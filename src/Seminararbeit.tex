@@ -1,97 +1,13 @@
 \documentclass[11pt,a4paper]{scrartcl}
 
-% Packages
-
-\usepackage{wrapfig}
-\usepackage{graphicx}
-\usepackage{url}
-\usepackage[automark]{scrlayer-scrpage}
-\usepackage{ucs}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-% deutsche Silbentrennung
-\usepackage[ngerman]{babel}
-\usepackage{float}
-\usepackage{hyperref}
-\usepackage[ngerman]{cleveref}
-\usepackage{pdfpages}
-\usepackage{blindtext}
-\usepackage{listings}
-
-% Develop Packages
-%\usepackage{blindtext}
-
-% Variables
-\newcommand{\vorname}{Lukas}
-\newcommand{\nachname}{Szimtenings}
-\newcommand{\matr}{Matr.-Nr.\ 3217694}
-\newcommand{\uni}{FH Aachen}
-\newcommand{\studiengang}{Angewandte Mathematik und Informatik}
-\newcommand{\modul}{5. Semester 952006 (Aachen)}
-\newcommand{\erstpruefer}{}
-\newcommand{\zweitpruefer}{Raphael Majeed}
-\newcommand{\subtitel}{ Verteilte Ausführung von in konjunktiver Normalform spezifizierten Machbarkeitsabfragen in medizinischen Datenintegrationszentren }
-\newcommand{\titel}{- Seminararbeit -}
-\newcommand{\location}{Aachen}
-\newcommand{\abteilung}{Abteilung: Research Infrastructure}
-\newcommand{\abteilungabkuerzung}{RI}
-
-%images
-\newcommand{\uklogo}{
-	\includegraphics[scale=0.5]{logo-uniklinik-rwth-aachen}
-	\includegraphics[scale=0.6]{imi_sublogo}
-}
-
-\newcommand{\ukimilogo}{\includegraphics[scale=0.16]{imilogo}}
-% command for wrapfigure -> so mehr als nur ein bild pro absatz möglich
-\newcommand*{\invisiblepar}{{\setlength{\parfillskip}{0pt}\par}\vskip-\parskip\noindent\ignorespaces}
-
-% Metadata
-\title{\titel}
-\author{\vorname\ \nachname}
-\date{\today{}, \location}
-
-% Seitenstrukturierung
-\clearpairofpagestyles
-%footer
-\ifoot[]{\ukimilogo}
-\cfoot[]{\abteilungabkuerzung}
-\ofoot[]{\pagemark}
-%header
-\ihead[]{\vorname\ \nachname}
-\chead[]{\titel}
-\ohead[]{\matr}
-%Seperator
-\setheadsepline[\textwidth]{1pt}
-\setfootsepline[\textwidth]{1pt}
+% Setup document
+\input{meta/includes.tex}
+\input{meta/variables.tex}
+\input{meta/document_metadata.tex}
+\input{meta/page_structure.tex}
 
 \begin{document}
-	% Titelblatt
-	\begin{titlepage}
-		\centering
-		{\scshape\LARGE \uni \par \studiengang \par \modul \par}
-		\vspace{1cm}
-		{\scshape\Large \titel \par}
-		\vspace{1.5cm}
-		{\bfseries \huge \subtitel \par}
-		\vspace{2cm}
-		{\itshape \Large \vorname\ \nachname\par \matr \par}
-		\vfill
-		\begin{center}
-			\uklogo
-			\par
-			\abteilung
-			
-		\end{center}
-		\par\vfill
-		\parbox{3cm}{\centering	\hrule \strut \centering \footnotesize {\vorname\ \nachname}\ \textit{Autor}}
-		\hfill 
-		\parbox{5cm}{\hrule \strut \centering \footnotesize \erstpruefer\ \textit{Erstprüfer}}
-		\hfill
-		\parbox{4cm}{\hrule \strut \centering \footnotesize \zweitpruefer\ \textit{Zweitprüfer}}
-		\vfill
-		{\large\location\ \today\par}
-	\end{titlepage}
+	\input{chapters/01_title_page.tex}
 	% Einbinden der Eidesstattlichen Erklärung
 	\includepdf{EidesstattlicheErklaerung.pdf}
 	\tableofcontents
