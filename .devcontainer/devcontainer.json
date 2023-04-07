@@ -64,9 +64,11 @@
 				// LanguageTool Support
 				"valentjn.vscode-ltex",
                 // Latex support
-                "James-Yu.latex-workshop",
-                "tecosaur.latex-utilities",
-                "efoerster.texlab"
+				"James-Yu.latex-workshop",
+				"tecosaur.latex-utilities",
+				"efoerster.texlab",
+				// PDF Viewer
+				"analytic-signal.preview-pdf"
 			]
 		}
 	}
