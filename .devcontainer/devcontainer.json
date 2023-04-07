@@ -55,7 +55,9 @@
 				"latex-workshop.view.pdf.color.dark.backgroundColor": "#171717", // For Dark Viewer
 				"editor.formatOnSave": true,
 				"latex-workshop.latex.pdfWatch.delay": 500,
-				"latex-workshop.codespaces.portforwarding.openDelay": 20000
+				"latex-workshop.codespaces.portforwarding.openDelay": 20000,
+				"ltex.language": "de-DE",
+				"ltex.additionalRules.motherTongue": "de-DE"
 			},
 			"extensions": [
 				"GitHub.copilot",
