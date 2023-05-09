@@ -47,37 +47,43 @@ Es soll lediglich eine Analyse der Prozesse erfolgen, und auf Basis dieser eine 
 \section{Methodik}\label{sec:methodik}
 Hier erkläre ich warum ich welche der oben genannten Methoden gewählt habe und wie ich sie im Detail angewandt habe
 \subsection{Prozessmodelierung}\label{subsec:prozessmodelierung-methodik}
-\subsection{Entwurf des Fragenkatalogs}\label{subsubsec:entwurf-fragenkatalog}
-\subsubsection{Auswahl der Gesprächspartner}\label{subsubsec:auswahl-gespraechspartner}
-
+\subsection{Auswahl der Gesprächspartner}\label{subsubsec:auswahl-gespraechspartner}
 Die Festlegung der Stakeholder-Gruppen für die Befragung zum Zwecke der Prozessmodellierung erfolgte durch eine Dokumentenanalyse der öffentlich zugänglichen Shibboleth-Dokumentation. 
-Die Dokumentenanalyse ist eine manuelle Technik zur Business Process Discovery, die im Abschnitt \ref{subsubsec:discovery-manuelle-techniken} kurz vorgestellt wird. 
+Die Dokumentenanalyse ist eine manuelle Technik zur Business Process Discovery, die im Abschnitt~\ref{subsubsec:discovery-manuelle-techniken} kurz vorgestellt wird. 
 
-\subsection{Identity Provider (IDP)}
+\subsubsection{Identity Provider (IDP)}
 Die zentrale Rolle der IDPs bei der Verwaltung von Metadaten und der Bereitstellung von Zugriffskontrollen wurde durch die Dokumentenanalyse der Shibboleth-Dokumentation ermittelt. 
 Aufgrund ihrer Verantwortung für die Eingabe und Aktualisierung von Metadaten wurde die Stakeholder-Gruppe der IDP-Administratoren ausgewählt.
 
-\subsection{Service Provider (SP)}
+\subsubsection{Service Provider (SP)}
 Die Dokumentenanalyse der Shibboleth-Dokumentation verdeutlichte desweiteren die Verantwortung der SPs für die Bereitstellung von Diensten und die Umsetzung von Zugriffsrichtlinien, die auf den vom IDP gelieferten claims basieren.
 Um den Reibungslosen Ablauf der Kommunikation mit dem IDP sicher zu stellen, müssen die SPs den IDP mit ihren Metadaten versorgen, und diese bei Änderungen aktualisieren.
 Die Stakeholder-Gruppe der SP-Administratoren wurde daher ausgewählt, um ihre Erfahrungen und Anforderungen hinsichtlich der Metadatenverwaltung zu untersuchen.
 
-\subsubsection{Fragenkatalog}
+\subsection{Entwurf des Fragenkatalogs}\label{subsubsec:entwurf-fragenkatalog}
+
 In diesem Abschnitt stellen wir Fragen für die verschiedenen Stakeholder-Gruppen auf: Projektverantwortliche, Administratoren der IDP, die für die Eingabe von Metadaten verantwortlich sind, und Serviceanbieter-Administratoren. 
 Diese Fragen zielen darauf ab, detaillierte Informationen zur Verwaltung von Metadaten zu sammeln und ihre Relevanz für das Prozessmodellierung zu untersuchen.
 Die Erstellung des Fragenkatalogs ist auf Grundlage der in Kapitel~\ref{subsec:interviews-grundlagen} vorgestellten Kriterien erfolgt.
 
-\textbf{Administratoren des IDP}
-\begin{enumerate}
-    \item \textbf{Frage}: Welche verschiedenen Metadaten werden derzeit verwaltet?
-    \item \textbf{Frage}: Wie werden Metadatenänderungen kommuniziert und wie wird sichergestellt, dass alle relevanten Parteien informiert werden?
-    \item \textbf{Frage}: Wie werden Metadatenänderungen validiert und wie wird sichergestellt, dass bei der Eintragung keine Fehler auftreten?
-    \item \textbf{Frage}: Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten?
-    \item \textbf{Frage}: Wie werden Metadatenänderungen in der IDP-Konfiguration vorgenommen?
-    \item \textbf{Frage}: Wie viel Zeit wird derzeit für die Verwaltung von Metadaten aufgewendet?
-\end{enumerate}
+\subsubsection{Administratoren des IDP}
 
-\textbf{Serviceprovider-Administratoren}
+\textbf{Welche Arten von Metadaten verwalten sie derzeit?}\\
+Da unterschiedliche Inhalte auf verschiedene Art und Weise verwaltet werden könnten, woraus unterschiedliche Prozesse entspringen könnten, versucht diese Frage die verschiedenen Metadaten zu identifizieren.\\\\
+\textbf{Wie werden neue Serviceprovider angelegt und verifiziert?}\\
+Ziel der Frage ist es, offen zu legen interessierte Serviceprovider einen Zugang zum Identityprovider erhalten. Besonderes Augenmerk ist dabei zu legen auf die Prüfung von Authentifizierung und Authorisierung der Interessenten\\\\
+\textbf{Wie werden Metadatenänderungen kommuniziert und wie wird sichergestellt, dass alle relevanten Parteien informiert werden?}\\
+Der Teilprozess der Kommunikation zwischen Serviceprovider und Identityprovider soll durch diese Frage identifiziert werden. Im Fokus steht hier unter anderem der durch Kommunikation entstehende Mehraufwand.\\\\
+\textbf{Wie werden Metadatenänderungen validiert und wie wird sichergestellt, dass bei der Eintragung keine Fehler auftreten?}\\
+Die Korektheit der eingetragenen Änderungen ist ein wichtiges Qualitätsmerkmal des Prozesses, die Frage zielt daher darauf ab den Teilprozess zu identifizieren welcher die Richtigkeit und Vollständigkeit gewährleistet\\\\
+\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten}?\\
+ Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die folgende Prozessanalyse\\\\
+\textbf{Wie werden Metadatenänderungen in der IDP-Konfiguration vorgenommen?}\\
+Die Änderung der Metadaten ist der Kern des Prozesses, und muss somit modelliert werden. Des weiteren kann diese Frage die verwendete Technologiebasis offen legen und damit wichtige Vorarbeit für die Anforderungsanalyse liefern.\\\\
+\textbf{Wie viel Zeit wird derzeit für die Verwaltung von Metadaten aufgewendet?}\\
+Ziel der Frage ist es, die Auswirkungen des Prozesses auf die Arbeitsbelastung der involvierten Akteure zu erfassen. Diese Information wird wichtig sobald die Priorisierung einzelner Teilprozesse für einen Zukünftigen Selfservice im Rahmen der Anforderungsanalyse vorgenommen werden muss.\\\\
+
+\subsubsection{Serviceprovider-Administratoren}
 \begin{enumerate}
     \item \textbf{Frage}: Was sind die wichtigsten Funktionen, die Sie in einer Self-Service-Lösung zur Verwaltung von Metadaten benötigen würden?
     \item \textbf{Frage}: Gibt es spezielle Anforderungen oder Bedenken in Bezug auf die Sicherheit bei der Verwaltung von Metadaten in einem Self-Service-System?
