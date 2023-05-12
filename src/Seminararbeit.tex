@@ -30,17 +30,17 @@
 \pagenumbering{arabic}
 
 \section{Einführung}\label{sec:einfuehrung}
-Die zunehmende Digitalisierung in Unternehmen führt dazu, dass Prozesse immer mehr automatisiert werden müssen, um wettbewerbsfähig zu bleiben.
+Die zunehmende Digitalisierung in Unternehmen führt dazu, dass immer mehr Prozesse automatisiert werden müssen, um wettbewerbsfähig zu bleiben.
 Dabei stellt insbesondere die Verwaltung von Zugriffsberechtigungen eine Herausforderung dar, da diese oft sehr komplex und zeitaufwändig ist.
-Eine Möglichkeit Zugriffsberechtigungen auf Systeme einer ganzen Organisation und darüber hinweg föderiert zu verwalten ist die Nutzung eines Single Sign-On (SSO) Systems.
+Eine Möglichkeit, Zugriffsberechtigungen auf Systeme einer ganzen Organisation und darüber hinweg föderiert zu verwalten, ist die Nutzung eines Single Sign-On (SSO) Systems.
 Die RWTH Aachen verwendet bereits ein solches System, musste jedoch feststellen, dass durch die Verwaltung von Serviceprovidern ein nicht geringer administrativer Aufwand anfällt.
 Zur Entwicklung eines Self-Service Systems muss daher zunächst die Verwaltung von Serviceprovidern auf der Prozessebene analysiert werden.
 
 \subsection{Problemstellung}\label{subsec:problemstellung}
-Ein SSO System besteht in aller Regel aus mindestens zwei Komponenten, zum einen dem Identity Provider (IDP) welcher konzeptionell Nutzer authentifiziert und autorisiert, und dem Service Provider (SP) welcher auf Basis der Informationen vom IDP über den Nutzer Zugriff auf seine Ressourcen gewährt.
+Ein SSO System besteht in aller Regel aus mindestens zwei Komponenten, zum Einen dem Identity Provider (IdP), welcher konzeptionell Nutzer authentifiziert und autorisiert, zum Anderen dem Service Provider (SP), welcher auf Basis der Informationen vom IdP über den Nutzer Zugriff auf seine Ressourcen gewährt.
 Das von der RWTH betriebene Shibboleth ist ein solches System, welches vielseitigen Einsatz an der RWTH und übergeordneten Organisationen findet.
-Da aus Sicherheitsgründen nicht jeder SP Zugriff auf das SSO System erhalten soll, muss die Verwaltung von SPs zentral in der Hand des IDPs liegen. 
-Dies führt jedoch zu einem hohen Verwaltungsaufwand, da die Anzahl der SPs stetig wächst und die Verwaltung der Zugriffsberechtigungen für jeden SP händisch in der IDP Konfiguration erfolgt.
+Da aus Sicherheitsgründen nicht jeder Mitarbeiter Zugriff auf das SSO System erhalten soll, muss die Verwaltung von SPs zentral in der Hand des IdPs liegen. 
+Dies führt jedoch zu einem hohen Verwaltungsaufwand, da die Anzahl der SPs stetig wächst und die Verwaltung der Zugriffsberechtigungen für jeden SP händisch in der IdP Konfiguration erfolgt.
 Da die Konfigurationsdatei eine Sicherheitsrelevante Resource darstellt, ist die Anzahl der Personen die diese bearbeiten dürfen begrenzt.
 
 \subsection{Metadaten}
@@ -50,7 +50,7 @@ Bei der in der Problemstellung erwähnten Verwaltung von SPs fallen verschiedene
     \item \textbf{Entity-IDs:} Eindeutige Bezeichner für die beteiligten Systeme, z. B. für Identity Provider und Service Provider. Die Entity-IDs werden in den Metadaten verwendet, um die Kommunikation zwischen den Systemen zu ermöglichen.
     \item \textbf{Endpunkte (Endpoints):} URLs, über die SAML-Anfragen und -Antworten ausgetauscht werden. Dazu gehören die Single Sign-On Service (SSOS) und Single Logout Service (SLOS) Endpunkte des IdPs sowie die Assertion Consumer Service (ACS) und Single Logout Service (SLOS) Endpunkte des SPs.
     \item \textbf{Zertifikate:} X.509-Zertifikate, die für die Signierung und Verschlüsselung von SAML-Nachrichten verwendet werden. Die öffentlichen Schlüssel aus diesen Zertifikaten werden in den Metadaten veröffentlicht, damit die Kommunikation zwischen IdP und SP sicher erfolgen kann.
-    \item \textbf{Attribute:} Informationen über den Benutzer, die vom IdP an den SP weitergegeben werden. Die Nutzerattribute (z. B. E-Mail-Adresse, Benutzername, Abteilung) welche an den jeweiligen SP bei einem login weitergegeben werden, werden in den Metadaten definiert, und müssen daher auch verwaltet werden.
+    \item \textbf{Attribute:} Informationen über den Benutzer, die vom IdP an den SP weitergegeben werden. Die Nutzerattribute (z. B. E-Mail-Adresse, Benutzername, Abteilung), welche an den jeweiligen SP bei einem Login weitergegeben werden, werden in den Metadaten definiert und müssen daher auch verwaltet werden.
     \item \textbf{Bindings und Profile:} SAML-Bindings legen fest, wie SAML-Nachrichten über HTTP transportiert werden (z. B. POST, Redirect oder SOAP). SAML-Profile definieren den Ablauf und die Struktur von SAML-Nachrichten für bestimmte Anwendungsfälle (z. B. Web Browser SSO oder Single Logout). Diese Informationen sind ebenfalls in den Metadaten enthalten.
 \end{itemize}
 
@@ -61,10 +61,9 @@ Die Metadaten werden in der Regel in einem XML-Format ausgetauscht und von Admin
 Sicherheitsmechanismen wie Signierung der Metadaten und regelmäßige Überprüfungen der Zertifikate sind notwendig, um die Integrität und Vertraulichkeit der Metadaten zu gewährleisten.
 
 \subsection{Zielsetzung}\label{subsec:zielsetzung}
-Ziel dieser Seminararbeit ist es daher, die Verwaltung von SPs auf der Prozessebene zu analysieren und zu modelieren.
-In einer Anforderungsanalyse soll dann erarbeitet werden, welche Anforderungen ein Self-Service System erfüllen muss um möglichst viele Teilprozesse an SP Betreiber auszulagern.
-\subsection{Abgrenzung}\label{subsec:abgrenzung}
-Nicht Ziel dieser Arbeit ist es, ein Systementwurf oder gar Code zu erstellen.
+Ziel dieser Seminararbeit ist es, die Verwaltung von SPs auf der Prozessebene zu analysieren und zu modelieren.
+In einer Anforderungsanalyse soll anschließend erarbeitet werden, welche Anforderungen ein Self-Service System erfüllen muss um möglichst viele Teilprozesse an SP Betreiber auszulagern.
+Nicht Ziel dieser Arbeit ist es, einen Systementwurf oder gar Code zu erstellen.
 Es soll lediglich eine Analyse der Prozesse erfolgen, und auf Basis dieser eine Anforderungsanalyse durchgeführt werden.
 
 
@@ -77,52 +76,53 @@ Die im Abschnitt~\ref{sec:grundlagen} vorgestellten Methoden wurden im Rahmen di
 Die Festlegung der Stakeholder-Gruppen für die Befragung zum Zwecke der Prozessmodellierung erfolgte durch eine Dokumentenanalyse der öffentlich zugänglichen Shibboleth-Dokumentation. 
 Die Dokumentenanalyse ist eine manuelle Technik zur Business Process Discovery, die im Abschnitt~\ref{subsec:interviews-grundlagen} kurz vorgestellt wird. 
 
-\subsubsection{Identity Provider (IDP)}
-Die zentrale Rolle der IDPs bei der Verwaltung von Metadaten und der Bereitstellung von Zugriffskontrollen wurde durch die Dokumentenanalyse der Shibboleth-Dokumentation ermittelt. 
-Aufgrund ihrer Verantwortung für die Eingabe und Aktualisierung von Metadaten wurde die Stakeholder-Gruppe der IDP-Administratoren ausgewählt.
+\subsubsection{Identity Provider (IdP)}
+Die zentrale Rolle der IdPs bei der Verwaltung von Metadaten und der Bereitstellung von Zugriffskontrollen wurde durch die Dokumentenanalyse der Shibboleth-Dokumentation ermittelt. 
+Aufgrund ihrer Verantwortung für die Eingabe und Aktualisierung von Metadaten wurde die Stakeholder-Gruppe der IdP-Administratoren ausgewählt.
 
 \subsubsection{Service Provider (SP)}
-Die Dokumentenanalyse der Shibboleth-Dokumentation verdeutlichte desweiteren die Verantwortung der SPs für die Bereitstellung von Diensten und die Umsetzung von Zugriffsrichtlinien, die auf den vom IDP gelieferten claims basieren.
-Um den Reibungslosen Ablauf der Kommunikation mit dem IDP sicher zu stellen, müssen die SPs den IDP mit ihren Metadaten versorgen, und diese bei Änderungen aktualisieren.
+Die Dokumentenanalyse der Shibboleth-Dokumentation verdeutlichte des Weiteren die Verantwortung der SPs für die Bereitstellung von Diensten und die Umsetzung von Zugriffsrichtlinien, die auf den vom IdP gelieferten claims basieren.
+Um den reibungslosen Ablauf der Kommunikation mit dem IdP sicherzustellen, müssen die SPs den IdP mit ihren Metadaten versorgen, und diese bei Änderungen aktualisieren.
 Die Stakeholder-Gruppe der SP-Administratoren wurde daher ausgewählt, um ihre Erfahrungen und Anforderungen hinsichtlich der Metadatenverwaltung zu untersuchen.
 
 \subsection{Entwurf des Fragenkatalogs}\label{subsubsec:entwurf-fragenkatalog}
 
-In diesem Abschnitt stellen wir Fragen für die verschiedenen Stakeholder-Gruppen auf: Projektverantwortliche, Administratoren der IDP, die für die Eingabe von Metadaten verantwortlich sind, und Serviceanbieter-Administratoren. 
-Diese Fragen zielen darauf ab, detaillierte Informationen zur Verwaltung von Metadaten zu sammeln und ihre Relevanz für das Prozessmodellierung zu untersuchen.
+In diesem Abschnitt werden Fragen für die verschiedenen Stakeholder-Gruppen aufgestellt.
+Zu den befragten Stakeholder-Gruppen gehören Projektverantwortliche, Administratoren der IdP, die für die Eingabe von Metadaten verantwortlich sind, und Serviceanbieter-Administratoren.
+Diese Fragen zielen darauf ab, detaillierte Informationen zur Verwaltung von Metadaten zu sammeln und ihre Relevanz für die Prozessmodellierung zu untersuchen.
 Die Erstellung des Fragenkatalogs ist auf Grundlage der in Kapitel~\ref{subsec:interviews-grundlagen} vorgestellten Kriterien erfolgt.
 
-\subsubsection{Administratoren des IDP}
+\subsubsection{Administratoren des IdP}
 
 \textbf{Welche Arten von Metadaten verwalten sie derzeit?}\\
 Da unterschiedliche Inhalte auf verschiedene Art und Weise verwaltet werden könnten, woraus unterschiedliche Prozesse entspringen könnten, versucht diese Frage die verschiedenen Metadaten zu identifizieren.\\\\
 \textbf{Wie werden neue Serviceprovider angelegt und verifiziert?}\\
-Ziel der Frage ist es, offen zu legen interessierte Serviceprovider einen Zugang zum Identityprovider erhalten. Besonderes Augenmerk ist dabei zu legen auf die Prüfung von Authentifizierung und Authorisierung der Interessenten\\\\
+Ziel der Frage ist es, offenzulegen, wie interessierte Serviceprovider einen Zugang zum IdentityProvider erhalten. Besonderes Augenmerk ist dabei auf die Prüfung von Authentifizierung und Authorisierung der Interessenten zu legen\\\\
 \textbf{Wie werden Metadatenänderungen kommuniziert und wie wird sichergestellt, dass alle relevanten Parteien informiert werden?}\\
-Der Teilprozess der Kommunikation zwischen Serviceprovider und Identityprovider soll durch diese Frage identifiziert werden. Im Fokus steht hier unter anderem der durch Kommunikation entstehende Mehraufwand.\\\\
+Der Teilprozess der Kommunikation zwischen Serviceprovider und IdentityProvider soll durch diese Frage identifiziert werden. Im Fokus steht hier unter anderem der durch Kommunikation entstehende Mehraufwand.\\\\
 \textbf{Wie werden Metadatenänderungen validiert und wie wird sichergestellt, dass bei der Eintragung keine Fehler auftreten?}\\
-Die Korektheit der eingetragenen Änderungen ist ein wichtiges Qualitätsmerkmal des Prozesses, die Frage zielt daher darauf ab den Teilprozess zu identifizieren welcher die Richtigkeit und Vollständigkeit gewährleistet\\\\
-\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten}?\\
- Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die folgende Prozessanalyse\\\\
-\textbf{Wie werden Metadatenänderungen in der IDP-Konfiguration vorgenommen?}\\
-Die Änderung der Metadaten ist der Kern des Prozesses, und muss somit modelliert werden. Des weiteren kann diese Frage die verwendete Technologiebasis offen legen und damit wichtige Vorarbeit für die Anforderungsanalyse liefern.\\\\
+Die Korrektheit der eingetragenen Änderungen ist ein wichtiges Qualitätsmerkmal des Prozesses. Die Frage zielt daher darauf ab, den Teilprozess zu identifizieren, welcher die Richtigkeit und Vollständigkeit gewährleistet.\\\\
+\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten?}\\
+ Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die Verbesserung des Prozesses.\\\\
+\textbf{Wie werden Metadatenänderungen in der IdP-Konfiguration vorgenommen?}\\
+Die Änderung der Metadaten ist der Kern des Prozesses und muss somit modelliert werden. Des Weiteren kann diese Frage die verwendete Technologiebasis offenlegen und damit wichtige Vorarbeit für die Anforderungsanalyse liefern.\\\\
 \textbf{Wie viel Zeit wird derzeit für die Verwaltung von Metadaten aufgewendet?}\\
-Ziel der Frage ist es, die Auswirkungen des Prozesses auf die Arbeitsbelastung der involvierten Akteure zu erfassen. Diese Information wird wichtig sobald die Priorisierung einzelner Teilprozesse für einen Zukünftigen Selfservice im Rahmen der Anforderungsanalyse vorgenommen werden muss.\\\\
+Ziel der Frage ist es, die Auswirkungen des Prozesses auf die Arbeitsbelastung der involvierten Akteure zu erfassen. Diese Information wird wichtig sobald die Priorisierung einzelner Teilprozesse für einen zukünftigen Selfservice im Rahmen der Anforderungsanalyse vorgenommen werden muss.\\\\
 
 \subsubsection{Serviceprovider-Administratoren}
-\textbf{Wie gehen sie vor wenn sie Änderungen an ihrem Serviceprovider kommunizieren wollen}\\
-Ziel der Frage ist es, einen Vergleich zu den Aussagen des IDP zu schaffen.\\\\
-\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten}?\\
-Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die folgende Prozessanalyse\\\\
+\textbf{Wie gehen sie vor wenn sie Änderungen an ihrem Serviceprovider kommunizieren wollen?}\\
+Ziel der Frage ist es, einen Vergleich zu den Aussagen des IdP zu schaffen.\\\\
+\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten?}\\
+Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die Verbesserung des Prozesses\\\\
 \textbf{Wie würden sie die Kommunikation mit der IDM-Gruppe beschreiben?}\\
-Die Frage zielt darauf ab, Qualitative Probleme in der Kommunikation offen zu legen.\\\\
+Die Frage zielt darauf ab, qualitative Probleme in der Kommunikation offenzulegen.\\\\
 
 
-Diese Fragen behandeln die verschiedenen Aspekte der Metadatenverwaltung und deren Relevanz für das Prozessmodellierung aus der Perspektive der verschiedenen Stakeholder-Gruppen.
+Diese Fragen behandeln die verschiedenen Aspekte der Metadatenverwaltung und deren Relevanz für die Prozessmodellierung aus der Perspektive der verschiedenen Stakeholder-Gruppen.
 
 \section{Prozessbeschreibung}
 
-Diese Prozessbeschreibung basiert auf einem Interview mit einem Mitarbeiter des Identity Management Teams (IDM) einer Organisation, die sich mit der Verwaltung von Metadaten für Serviceprovider (SP) beschäftigt.
+Diese Prozessbeschreibung basiert auf dem Interview mit einem Mitarbeiter des Identity Management Teams (IDM) derjenigen Organisation, welche den IdP betreibt und die Metadaten der Serviceprovider (SP) verwaltet.\\
 Der Prozess umfasst die Verwaltung von externen und internen Datenquellen, die Kommunikation mit den Service Providern und die Pflege von Metadaten in einem Git-Repository.
 
 \subsection{Ziele und Anforderungen des Prozesses}
@@ -132,8 +132,8 @@ Das Hauptziel des Prozesses ist die effektive Verwaltung von Metadaten für Serv
 \begin{itemize}
   \item Die Sammlung und Dokumentation von Informationen zu den Service Providern
   \item Die Prüfung, Aktualisierung und Validierung von Metadaten
-  \item Die Kommunikation von Änderungen an relevanten Parteien
-  \item Die Sicherstellung der korrekten Konfiguration der Identity Provider (IDP) Server
+  \item Die Kommunikation von Änderungen an relevante Parteien
+  \item Die Sicherstellung der korrekten Konfiguration der IdP Server
 \end{itemize}
 
 \subsection{Prozesse}
@@ -148,8 +148,8 @@ Das Hauptziel des Prozesses ist die effektive Verwaltung von Metadaten für Serv
   \item Die IDM-Gruppe prüft das RFC-Dokument auf Vollständigkeit und Korrektheit der Informationen.
   \item Bei Fehlern, Rückfragen oder Anpassungen wird wieder mit dem SP kommuniziert.
   \item Während das RFC noch geprüft wird, erhält der SP Zugriff zum Testsystem.
-  \item Die IDM-Gruppe prüft den XML-Metadatensatz der aus dem RFC hervorgeht mit einem linter auf Syntaxfehler.
-  \item Die IDM-Gruppe fügt den XML-Metadatensatz in das Git-Repository ein
+  \item Die IDM-Gruppe prüft den XML-Metadatensatz, der aus dem RFC hervorgeht mit einem linter auf Syntaxfehler.
+  \item Die IDM-Gruppe fügt den XML-Metadatensatz in das Git-Repository ein.
   \item Eine zweite Datei mit Attributfiltern wird aus den angeforderten Attributen im RFC manuell erstellt und in einem anderen Git-Repository gespeichert.
 \end{enumerate}
 
@@ -160,16 +160,16 @@ Das Hauptziel des Prozesses ist die effektive Verwaltung von Metadaten für Serv
   \item Der SP-Betreiber sendet die aktualisierten Informationen an die IDM-Gruppe, die diese überprüft.
   \item Bei Fehlern, Rückfragen oder Anpassungen wird wieder mit dem SP kommuniziert.
   \item Die IDM-Gruppe verwendet einen XML-Linter, um die XML-Metadaten auf Syntaxfehler zu prüfen.
-  \item Die IDM-Gruppe aktualisiert den XML-Metadatensatz und die Attributfilter-Datei in den Git-Repositories entsprechend den aktualisierten Informationen.
+  \item Die IDM-Gruppe aktualisiert den XML-Metadatensatz und die Attributfilter-Datei in den Git-Repositories entsprechend der aktualisierten Informationen.
   \item Die IDM-Gruppe prüft manuell, ob das Login bei dem Serviceprovider funktioniert.
 \end{enumerate}
 
-\subsubsection{Metadatenänderungen in der IDP-Konfiguration vornehmen}
+\subsubsection{Metadatenänderungen in der IdP-Konfiguration vornehmen}
 
 \begin{enumerate}
   \item Die XML-Metadaten in den Git-Repositories werden regelmäßig auf Änderungen überprüft.
   \item Die XML-Dokumente werden automatisch zusammengeführt.
-  \item Der Merge wird auf die IDP Server hochgeladen.
+  \item Der Merge wird auf die IdP Server hochgeladen.
 \end{enumerate}
 
 \subsection{Kommunikation}
@@ -224,9 +224,10 @@ Die Abbildung~\ref{fig:service-provider-anpassung} modelliert den Prozess zur An
 \subsection{Prozessanalyse}\label{subsec:prozessanalyse-results}
 Die aktuelle Prozessanalyse zeigt verschiedene Schritte zur Verwaltung von Metadaten und Service Providern (SP) im Identity Management (IDM). 
 Dabei werden Datenquellen, Metadaten, Benutzer- und Provider-Verwaltung sowie Kommunikation und Validierung von Metadatenänderungen behandelt.
-Es zeigt auch Schwierigkeiten und Zeitaufwand bei der Metadatenverwaltung auf.
 
 \subsubsection{Probleme}
+Die Analyse zeigt folgende Schwierigkeiten und Zeitaufwand bei der Metadatenverwaltung auf.
+
 
 \paragraph{Inkonsistenzen zwischen RFC und effektiv verwendeten Metadaten}
 Im aktuellen Prozess kann es zu Inkonsistenzen zwischen den im RFC-Dokument festgelegten Informationen und den tatsächlich verwendeten Metadaten kommen. 
