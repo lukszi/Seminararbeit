@@ -325,6 +325,26 @@ Die Verwendung von Apache Wicket trägt dazu bei, dass die Plattform nahtlos in 
 
 \section{Zusammenfassung und Ausblick}\label{sec:summary}
 \subsection{Zusammenfassung}\label{subsec:summary}
+In dieser Seminararbeit liegt der Schwerpunkt auf der Analyse des aktuellen Prozesses zur Verwaltung der Service Provider durch die Identity Management Gruppe, basierend auf einem Interview mit dem Identity Provider (IdP)-Betreiber.
+Ziel der Arbeit ist es, Schwachstellen in der Metadatenverwaltung zu identifizieren und Verbesserungsvorschläge vorzuschlagen, um die Effizienz und Qualität des Prozesses zu erhöhen.
+
+Die Analyse zeigt folgende Schwierigkeiten und Probleme auf:
+
+\begin{enumerate}
+    \item Inkonsistenzen zwischen RFC und effektiv verwendeten Metadaten: Diskrepanzen können auftreten, wenn sich geforderte Attribute während der Abgabe ändern oder informell beantragte Änderungen kurzfristig eintreten.
+    \item Zeitkonsumierende Kommunikation mit Serviceprovider Betreibern: Der gesamte Prozess dauert im Schnitt 3-5 Tage, wobei das Warten auf die Kommunikation einen erheblichen Anteil an der Gesamtdauer hat.
+    \item Karteileichen durch nicht existente Datenüberwachung: Da keine Überwachung der existierenden Daten stattfindet, können veraltete oder nicht mehr genutzte Serviceprovider im System verbleiben.
+    \item Fehlende semantische Validierung der XML Metadaten: Die fehlende Validierung mittels der Shibboleth XML Schema Definition (XSD) kann zu Fehlern bei der Eintragung und einer Beeinträchtigung der Metadatenqualität führen.
+\end{enumerate}
+
+Um diese Schwachstellen zu beheben, wurden Verbesserungsvorschläge erarbeitet:
+
+\begin{enumerate}
+    \item Einführung eines Self-Service-Portals für Serviceprovider: Dadurch können Serviceprovider Betreiber eigenständig die benötigten Attribute anfordern und Änderungen an ihren Anbindungen vornehmen, was den Kommunikationsaufwand und die Prozessdauer reduziert.
+    \item Automatische Überwachung und Validierung der Datenbestände: Ein solches System kann die Gültigkeit und Aktualität der Metadaten und Zertifikate überprüfen und bei Bedarf Warnungen oder Benachrichtigungen an die zuständigen Administratoren senden, wodurch der manuelle Aufwand für die Prüfung und Aktualisierung der Datenbestände reduziert wird.
+    \item Erweiterte semantische Validierung der XML-Metadaten: Durch die Verwendung der Shibboleth XML Schema Definition (XSD) können Fehler bei der Eintragung vermieden und die Qualität der Metadaten verbessert werden.
+\end{enumerate}
+
 \subsection{Ausblick}\label{subsec:outlook}
 
 %% Suffix %%
