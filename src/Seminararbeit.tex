@@ -276,8 +276,39 @@ Des weiteren könnte ein solches Portal die
 Durch Überwachungsmechanismen könnten Effizienz und Qualität des Prozesses gesteigert werden.
 
 \subsection{Anforderungsanalyse}\label{subsec:anforderungsanalyse-results}
-Auflistung der erarbeiteten Anforderungen eingeteilt in funktionale und nicht funktionale Anforderungen
+Auf Grundlage der Prozessanalyse ergeben sich die folgenden Anforderungen an ein System zur Verwaltung von Metadaten und Service Providern (SP) im Identity Management (IDM).
+
 \subsubsection{Funktionale Anforderungen}\label{subsubsec:functional-requirements}
+
+\paragraph{Antäge für Änderungen stellen (SP):}
+Serviceprovider Betreiber dürfen keine direkten Änderungen an ihren Anbindungen vornehmen.
+Stattdessen sollten sie Anträge stellen können, die von Administratoren geprüft und entweder angenommen oder abgelehnt werden.
+Dies ermöglicht eine effiziente Kommunikation und einen kontrollierten Prozess.
+
+\paragraph{Attribute aus vorgegebener Liste auswählen (SP):}
+Serviceprovider Betreiber sollten in der Lage sein, die benötigten Attribute aus einer vorgegebenen Liste auszuwählen.
+Dies stellt sicher, dass nur gültige Attribute verwendet werden und die Konsistenz der Daten gewährleistet ist.
+
+\paragraph{Zertifikatsverwaltung (SP):}
+Serviceprovider Betreiber sollten in der Lage sein, ihre Zertifikate zu verwalten, einschließlich des Hochladens neuer Zertifikate zum ersetzen abgelaufener Zertifikate.
+Das System muss dabei den aktuell existierenden Rollover Prozess umsetzen.
+
+\paragraph{Metadatenvalidierung (SP):}
+Serviceprovider Betreiber sollten durch das System unterstützt werden, um die Qualität und Konsistenz ihrer Metadaten zu gewährleisten.
+Dies kann beispielsweise durch automatische Validierung der XML Metadaten mittels der Shibboleth XML Schema Definition (XSD) erfolgen.
+
+\paragraph{Generierung von AttributeFiltern (IdP):}
+Das System soll in der Lage sein aus den vom Serviceprovider ausgewählten Attributen AttributeFilter zu generieren, und damit die Wiederspruchsfreiheit der Daten sicher stellen.
+
+\paragraph{Antragsverwaltung (IdP):}
+Die Plattform sollte den Administratoren ermöglichen, aktuelle Anträge einzusehen und abzuarbeiten. Diese Anträge repräsentieren relevante Änderungen, die von Service Provider Betreibern angefordert wurden.
+Administratoren sollten in der Lage sein, diese Anträge zu überprüfen, zu genehmigen oder abzulehnen und den Status der Anträge zu aktualisieren.
+Die Antragsverwaltung trägt zur effizienten Kommunikation und Zusammenarbeit zwischen Identity Providern und Service Providern bei.
+
+\paragraph{Übersichtsseite (IdP):}
+Die Plattform sollte eine übersichtliche Liste aller Service Provider anzeigen, um den Administratoren einen schnellen und einfachen Zugriff auf Informationen und Einstellungen der einzelnen Service Provider zu ermöglichen.
+Diese Übersichtsseite kann dazu beitragen, die Kommunikation und Zusammenarbeit zwischen Identity Providern und Service Providern weiter zu verbessern. 
+Administratoren sollten in der Lage sein, die Übersichtsseite zu nutzen, um den Status und die Konfiguration von Service Providern einfach zu verwalten und zu überwachen.
 \subsubsection{Nicht-funktionale Anforderungen}\label{subsubsec:non-functional-requirements}
 \subsubsection{Diskussion}\label{subsubsec:anforderungsanalyse-discussion}
 
