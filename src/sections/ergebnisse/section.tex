@@ -1,0 +1,104 @@
+
+\section{Ergebnisse und Diskussion}\label{sec:results}
+
+\subsection{Prozessanalyse}\label{subsec:prozessanalyse-results}
+Die aktuelle Prozessanalyse zeigt verschiedene Schritte zur Verwaltung von Metadaten und Service Providern (SP) im Identity Management (IDM). 
+Dabei werden Datenquellen, Metadaten, Benutzer- und Provider-Verwaltung sowie Kommunikation und Validierung von Metadatenänderungen behandelt.
+
+\subsubsection{Probleme}
+Die Analyse zeigt folgende Schwierigkeiten und Zeitaufwand bei der Metadatenverwaltung auf.
+
+
+\paragraph{Inkonsistenzen zwischen RFC und effektiv verwendeten Metadaten}
+Im aktuellen Prozess kann es zu Inkonsistenzen zwischen den im RFC-Dokument festgelegten Informationen und den tatsächlich verwendeten Metadaten kommen. 
+Diese Diskrepanzen treten insbesonder dann auf, wenn geforderte Attribute sich während der Abgabe regelmäßig ändern.
+Daneben tragen kurzfristig informell beantragte Änderungen zu Inkonsistenzen bei.
+
+\paragraph{Zertifikatabläufe}
+Ein weiteres Problem besteht darin, dass der Ablauf von Zertifikaten aktuell nicht geprüft wird. Der Shibboleth-Server geht dabei davon aus, dass alles Zertifikate gültig sind.\\
+Dies ist zwar nicht sonderlich Sicherheitskritisch, allerdings dennoch ein unschöner Zustand.
+
+\paragraph{Zeitkonsumierende Kommunikation mit Serviceprovider Betreibern}
+Die Kommunikation mit den Serviceprovider Betreibern bei Rückfragen zu Attributen kann zeitintensiv sein.
+Der gesamte Prozess dauert im Schnitt 3-5 Tage, wobei das Warten auf die Kommunikation einen erheblichen Anteil an der Gesamtdauer hat.
+Mehr angeforderte Attribute führen dabei zu mehr Abstimmungsbedarf mit SP-Anbietern und damit zu einer stark erhöhten Dauer des Prozesses.
+
+\paragraph{Karteileichen durch nicht existente Datenüberwachung}
+Da keine Überwachung der existierenden Daten stattfindet und sich das Serviceprovider Administrationspersonal ändern kann, kann es zu Karteileichen kommen.
+Dies bedeutet, dass einige Serviceprovider möglicherweise nicht mehr genutzt werden oder veraltet sind, aber weiterhin im System vorhanden sind.
+
+\paragraph{Fehlende semantische Validierung der XML Metadaten}
+
+Derzeit findet keine semantische Validierung der XML Metadaten statt.
+Obwohl ein XML Linter verwendet wird, ist die Validierung mittels der Shibboleth XML Schema Definition (XSD) auf Dauer wünschenswert.
+Die fehlende semantische Prüfung kann dazu führen, dass Fehler bei der Eintragung auftreten, und die Qualität der Metadaten beeinträchtigt wird.
+
+\subsubsection{Verbesserungsvorschläge}
+Die oben angeführten Probleme können durch die folgenden Verbesserungsvorschläge behoben oder gelindert werden.
+
+\paragraph{Einführung eines Self-Service-Portals für Serviceprovider}
+Um den zeitintensiven Kommunikationsaufwand mit Serviceprovider Betreibern zu reduzieren und die Effizienz des Prozesses zu erhöhen, könnte ein Self-Service-Portal implementiert werden.
+Serviceprovider Betreiber könnten über dieses Portal eigenständig die benötigten Attribute anfordern und Änderungen an ihren Anbindungen vornehmen.
+Dieses könnte das bisherige RFC-Dokument ersetzen und damit große Teile der Zeitaufwendigen Kommunikation mit der IDM-Gruppe übernehmen. Dies würde den Prozess aus Sicht der IDM Gruppe stark beschleunigen.
+
+\paragraph{Automatische Überwachung und Validierung der Datenbestände}
+Die Implementierung einer automatischen Überwachung und Validierung der Datenbestände könnte dazu beitragen, Karteileichen zu vermeiden.
+Ein solches System könnte regelmäßig die Gültigkeit und Aktualität der Metadaten und Zertifikate überprüfen und bei Bedarf Warnungen oder Benachrichtigungen an die zuständigen Administratoren senden.
+Kombiniert mit einem Self-Service-Portal welches die RFC-Dokumente ersetzt, würde das Problem der Inkonsistenzen damit gelöst und den manuellen Aufwand für die Prüfung und Aktualisierung der Datenbestände reduzieren.
+
+\paragraph{Erweiterte semantische Validierung der XML Metadaten}
+Die Einführung einer erweiterten semantischen Validierung der XML Metadaten mittels der Shibboleth XML Schema Definition (XSD) würde dazu beitragen, Fehler bei der Eintragung zu vermeiden und die Qualität der Metadaten zu verbessern.
+Eine solche Validierung könnte automatisch im Rahmen der automatischen Überwachung der Datenbestände erfolgen und bei Bedarf entsprechende Korrekturmaßnahmen anstoßen.
+
+\subsubsection{Diskussion}\label{subsubsec:prozessanalyse-discussion}
+Der aktuelle Prozess zur Metadatenverwaltung und SP-Anbindung weist in einigen Bereichen Verbesserungspotenzial auf.
+Durch die Einführung eines Self-Service-Portals könnte Kommunikation die aktuell einen großen Teil der für den Prozess benötigten Zeit in Anspruch nimmt reduziert werden.
+Des weiteren könnte ein solches Portal die 
+Durch Überwachungsmechanismen könnten Effizienz und Qualität des Prozesses gesteigert werden.
+
+\subsection{Anforderungsanalyse}\label{subsec:anforderungsanalyse-results}
+Auf Grundlage der Prozessanalyse ergeben sich die folgenden Anforderungen an ein System zur Verwaltung von Metadaten und Service Providern (SP) im Identity Management (IDM).
+
+\subsubsection{Funktionale Anforderungen}\label{subsubsec:functional-requirements}
+\paragraph{Antrag auf Ersteinrichtung stellen (SP):}
+Noch nicht registrierte Serviceprovider Betreiber sollen die Möglichkeit haben, über die Plattform einen Antrag auf Ersteinrichtung ihres Services zu stellen.
+Nachdem der Antrag eingereicht wurde, sollten die zuständigen Administratoren benachrichtigt werden, um den Antrag zu überprüfen, Rückfragen zu klären und im Anschluss entsprechend zu genehmigen oder abzulehnen. 
+Über Genehmigung oder Ablehnung wird der Antragsteller benachrichtigt.
+
+\paragraph{Antäge für Änderungen stellen (SP):}
+Serviceprovider Betreiber dürfen keine direkten Änderungen an ihren Anbindungen vornehmen.
+Stattdessen werden Anträge gestellt, die von Administratoren geprüft und entweder angenommen oder abgelehnt werden.
+
+\paragraph{Attribute aus vorgegebener Liste auswählen (SP):}
+Serviceprovider Betreiber sollten in der Lage sein, die benötigten Attribute aus einer vorgegebenen Liste auszuwählen.
+Dies stellt sicher, dass nur gültige Attribute verwendet werden und die Konsistenz der Daten gewährleistet ist.
+
+\paragraph{Zertifikatsverwaltung (SP):}
+Serviceprovider Betreiber sollten in der Lage sein, ihre Zertifikate zu verwalten, einschließlich des Hochladens neuer Zertifikate zum ersetzen abgelaufener Zertifikate.
+Das System muss dabei den aktuell existierenden Rollover Prozess umsetzen.
+
+\paragraph{Metadatenvalidierung (SP):}
+Serviceprovider Betreiber sollten durch das System unterstützt werden, um die Qualität und Konsistenz ihrer Metadaten zu gewährleisten.
+Dies kann beispielsweise durch automatische Validierung der XML Metadaten mittels der Shibboleth XML Schema Definition (XSD) erfolgen.
+
+\paragraph{Generierung von AttributeFiltern (IdP):}
+Das System soll in der Lage sein aus den vom Serviceprovider ausgewählten Attributen AttributeFilter zu generieren, und damit die Wiederspruchsfreiheit der Daten sicher zu stellen.
+
+\paragraph{Antragsverwaltung (IdP):}
+Die Plattform sollte den Administratoren ermöglichen, aktuelle Anträge einzusehen und abzuarbeiten. Diese Anträge repräsentieren relevante Änderungen, die von Service Provider Betreibern angefordert wurden.
+Administratoren sollten in der Lage sein, diese Anträge zu überprüfen, zu genehmigen oder abzulehnen und den Status der Anträge zu aktualisieren.
+Die Antragsverwaltung trägt zur effizienten Kommunikation und Zusammenarbeit zwischen Identity Providern und Service Providern bei.
+
+\paragraph{Übersichtsseite (IdP):}
+Die Plattform sollte eine übersichtliche Liste aller Service Provider anzeigen, um den Administratoren einen schnellen und einfachen Zugriff auf Informationen und Einstellungen der einzelnen Service Provider zu ermöglichen.
+Administratoren sollten in der Lage sein, die Übersichtsseite zu nutzen, um den Status und die Konfiguration von Service Providern einfach zu verwalten und zu überwachen.
+
+\subsubsection{Nicht-funktionale Anforderungen}\label{subsubsec:non-functional-requirements}
+
+\paragraph{Design-Konsistenz:}
+Die Plattform soll dem Design von bereits bestehenden Plattformen folgen, um eine konsistente Benutzererfahrung und ein einheitliches Erscheinungsbild zu gewährleisten. 
+Dies erleichtert die Integration der neuen Plattform in die bestehende Systemlandschaft und verbessert die Benutzerakzeptanz.
+
+\paragraph{Technologie und Interoperabilität:}
+Die Plattform muss in Apache Wicket entwickelt werden, um die Interoperabilität mit bestehenden Systemen sicherzustellen und die Wartbarkeit durch vorhandenes Personal zu ermöglichen.
+Die Verwendung von Apache Wicket trägt dazu bei, dass die Plattform nahtlos in die bestehende Infrastruktur integriert werden kann und die Lernkurve im Falle einer Übergabe gering ist.

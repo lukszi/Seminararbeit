@@ -1,5 +1,36 @@
 \section{Einführung}\label{sec:einfuehrung}
-\input{sections/einfuehrung/singleSignOn.tex}
-\input{sections/einfuehrung/problemstellung.tex}
-\input{sections/einfuehrung/zielsetzung.tex}
-\input{sections/einfuehrung/abgrenzung.tex}
+Die zunehmende Digitalisierung in Unternehmen führt dazu, dass immer mehr Prozesse automatisiert werden müssen, um wettbewerbsfähig zu bleiben.
+Dabei stellt insbesondere die Verwaltung von Zugriffsberechtigungen eine Herausforderung dar, da diese oft sehr komplex und zeitaufwändig ist.
+Eine Möglichkeit, Zugriffsberechtigungen auf Systeme einer ganzen Organisation und darüber hinweg föderiert zu verwalten, ist die Nutzung eines Single Sign-On (SSO) Systems.
+Die RWTH Aachen verwendet bereits ein solches System, musste jedoch feststellen, dass durch die Verwaltung von Serviceprovidern ein nicht geringer administrativer Aufwand anfällt.
+Zur Entwicklung eines Self-Service Systems muss daher zunächst die Verwaltung von Serviceprovidern auf der Prozessebene analysiert werden.
+
+\subsection{Problemstellung}\label{subsec:problemstellung}
+Ein SSO System besteht in aller Regel aus mindestens zwei Komponenten, zum Einen dem Identity Provider (IdP), welcher konzeptionell Nutzer authentifiziert und autorisiert, zum Anderen dem Service Provider (SP), welcher auf Basis der Informationen vom IdP über den Nutzer Zugriff auf seine Ressourcen gewährt.
+Das von der RWTH betriebene Shibboleth ist ein solches System, welches vielseitigen Einsatz an der RWTH und übergeordneten Organisationen findet.
+Da aus Sicherheitsgründen nicht jeder Mitarbeiter Zugriff auf das SSO System erhalten soll, muss die Verwaltung von SPs zentral in der Hand des IdPs liegen. 
+Dies führt jedoch zu einem hohen Verwaltungsaufwand, da die Anzahl der SPs stetig wächst und die Verwaltung der Zugriffsberechtigungen für jeden SP händisch in der IdP Konfiguration erfolgt.
+Da die Konfigurationsdatei eine Sicherheitsrelevante Resource darstellt, ist die Anzahl der Personen die diese bearbeiten dürfen begrenzt.
+
+\subsection{Metadaten}
+Bei der in der Problemstellung erwähnten Verwaltung von SPs fallen verschiedene sogenannte Metadaten an, die für die Kommunikation und das Verständnis zwischen den beteiligten Systemen wichtig sind. Die wichtigsten Metadaten sind:
+
+\begin{itemize}
+    \item \textbf{Entity-IDs:} Eindeutige Bezeichner für die beteiligten Systeme, z. B. für Identity Provider und Service Provider. Die Entity-IDs werden in den Metadaten verwendet, um die Kommunikation zwischen den Systemen zu ermöglichen.
+    \item \textbf{Endpunkte (Endpoints):} URLs, über die SAML-Anfragen und -Antworten ausgetauscht werden. Dazu gehören die Single Sign-On Service (SSOS) und Single Logout Service (SLOS) Endpunkte des IdPs sowie die Assertion Consumer Service (ACS) und Single Logout Service (SLOS) Endpunkte des SPs.
+    \item \textbf{Zertifikate:} X.509-Zertifikate, die für die Signierung und Verschlüsselung von SAML-Nachrichten verwendet werden. Die öffentlichen Schlüssel aus diesen Zertifikaten werden in den Metadaten veröffentlicht, damit die Kommunikation zwischen IdP und SP sicher erfolgen kann.
+    \item \textbf{Attribute:} Informationen über den Benutzer, die vom IdP an den SP weitergegeben werden. Die Nutzerattribute (z. B. E-Mail-Adresse, Benutzername, Abteilung), welche an den jeweiligen SP bei einem Login weitergegeben werden, werden in den Metadaten definiert und müssen daher auch verwaltet werden.
+    \item \textbf{Bindings und Profile:} SAML-Bindings legen fest, wie SAML-Nachrichten über HTTP transportiert werden (z. B. POST, Redirect oder SOAP). SAML-Profile definieren den Ablauf und die Struktur von SAML-Nachrichten für bestimmte Anwendungsfälle (z. B. Web Browser SSO oder Single Logout). Diese Informationen sind ebenfalls in den Metadaten enthalten.
+\end{itemize}
+
+Die Verwaltung der Metadaten erfolgt in der Regel über einen zentralen Metadatenspeicher, wie z. B. einen Metadatenaggregator oder einen Metadatendienst. 
+Die beteiligten Systeme (IdPs und SPs) stellen ihre eigenen Metadaten bereit und beziehen die Metadaten der anderen Systeme aus dem zentralen Speicher. 
+Dadurch wird eine konsistente und vertrauenswürdige Informationsbasis für die Kommunikation und das Verständnis zwischen den Systemen sichergestellt.\\
+Die Metadaten werden in der Regel in einem XML-Format ausgetauscht und von Administratoren in die zugehörigen Konfigurationsdateien eingetragen. 
+Sicherheitsmechanismen wie Signierung der Metadaten und regelmäßige Überprüfungen der Zertifikate sind notwendig, um die Integrität und Vertraulichkeit der Metadaten zu gewährleisten.
+
+\subsection{Zielsetzung}\label{subsec:zielsetzung}
+Ziel dieser Seminararbeit ist es, die Verwaltung von SPs auf der Prozessebene zu analysieren und zu modelieren.
+In einer Anforderungsanalyse soll anschließend erarbeitet werden, welche Anforderungen ein Self-Service System erfüllen muss um möglichst viele Teilprozesse an SP Betreiber auszulagern.
+Nicht Ziel dieser Arbeit ist es, einen Systementwurf oder gar Code zu erstellen.
+Es soll lediglich eine Analyse der Prozesse erfolgen, und auf Basis dieser eine Anforderungsanalyse durchgeführt werden.

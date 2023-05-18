@@ -1,5 +1,50 @@
+
 \section{Methodik}\label{sec:methodik}
-    \subsection{Anforderungserhebung}\label{subsec:anforderungserhebung}
-        \subsubsection{Entwurf des Fragenkatalogs}\label{subsubsec:entwurf-fragenkatalog}
-        \subsubsection{Durchführung der Interviews}\label{subsec:durchfuehrung-interviews}
-    \subsection{Auswertung der Interviews}\label{subsec:auswertung-interviews}
+Die im Abschnitt~\ref{sec:grundlagen} vorgestellten Methoden wurden im Rahmen dieser Arbeit wie folgt angewendet, um die in Abschnitt~\ref{subsec:zielsetzung} genannten Ziele zu erreichen.
+\subsection{Auswahl der Gesprächspartner}\label{subsubsec:auswahl-gespraechspartner}
+Die Festlegung der Stakeholder-Gruppen für die Befragung zum Zwecke der Prozessmodellierung erfolgte durch eine Dokumentenanalyse der öffentlich zugänglichen Shibboleth-Dokumentation. 
+Die Dokumentenanalyse ist eine manuelle Technik zur Business Process Discovery, die im Abschnitt~\ref{subsec:interviews-grundlagen} kurz vorgestellt wird. 
+
+\subsubsection{Identity Provider (IdP)}
+Die zentrale Rolle der IdPs bei der Verwaltung von Metadaten und der Bereitstellung von Zugriffskontrollen wurde durch die Dokumentenanalyse der Shibboleth-Dokumentation ermittelt. 
+Aufgrund ihrer Verantwortung für die Eingabe und Aktualisierung von Metadaten wurde die Stakeholder-Gruppe der IdP-Administratoren ausgewählt.
+
+\subsubsection{Service Provider (SP)}
+Die Dokumentenanalyse der Shibboleth-Dokumentation verdeutlichte des Weiteren die Verantwortung der SPs für die Bereitstellung von Diensten und die Umsetzung von Zugriffsrichtlinien, die auf den vom IdP gelieferten claims basieren.
+Um den reibungslosen Ablauf der Kommunikation mit dem IdP sicherzustellen, müssen die SPs den IdP mit ihren Metadaten versorgen, und diese bei Änderungen aktualisieren.
+Die Stakeholder-Gruppe der SP-Administratoren wurde daher ausgewählt, um ihre Erfahrungen und Anforderungen hinsichtlich der Metadatenverwaltung zu untersuchen.
+
+\subsection{Entwurf des Fragenkatalogs}\label{subsubsec:entwurf-fragenkatalog}
+
+In diesem Abschnitt werden Fragen für die verschiedenen Stakeholder-Gruppen aufgestellt.
+Zu den befragten Stakeholder-Gruppen gehören Projektverantwortliche, Administratoren der IdP, die für die Eingabe von Metadaten verantwortlich sind, und Serviceanbieter-Administratoren.
+Diese Fragen zielen darauf ab, detaillierte Informationen zur Verwaltung von Metadaten zu sammeln und ihre Relevanz für die Prozessmodellierung zu untersuchen.
+Die Erstellung des Fragenkatalogs ist auf Grundlage der in Kapitel~\ref{subsec:interviews-grundlagen} vorgestellten Kriterien erfolgt.
+
+\subsubsection{Administratoren des IdP}
+
+\textbf{Welche Arten von Metadaten verwalten sie derzeit?}\\
+Da unterschiedliche Inhalte auf verschiedene Art und Weise verwaltet werden könnten, woraus unterschiedliche Prozesse entspringen könnten, versucht diese Frage die verschiedenen Metadaten zu identifizieren.\\\\
+\textbf{Wie werden neue Serviceprovider angelegt und verifiziert?}\\
+Ziel der Frage ist es, offenzulegen, wie interessierte Serviceprovider einen Zugang zum IdentityProvider erhalten. Besonderes Augenmerk ist dabei auf die Prüfung von Authentifizierung und Authorisierung der Interessenten zu legen\\\\
+\textbf{Wie werden Metadatenänderungen kommuniziert und wie wird sichergestellt, dass alle relevanten Parteien informiert werden?}\\
+Der Teilprozess der Kommunikation zwischen Serviceprovider und IdentityProvider soll durch diese Frage identifiziert werden. Im Fokus steht hier unter anderem der durch Kommunikation entstehende Mehraufwand.\\\\
+\textbf{Wie werden Metadatenänderungen validiert und wie wird sichergestellt, dass bei der Eintragung keine Fehler auftreten?}\\
+Die Korrektheit der eingetragenen Änderungen ist ein wichtiges Qualitätsmerkmal des Prozesses. Die Frage zielt daher darauf ab, den Teilprozess zu identifizieren, welcher die Richtigkeit und Vollständigkeit gewährleistet.\\\\
+\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten?}\\
+ Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die Verbesserung des Prozesses.\\\\
+\textbf{Wie werden Metadatenänderungen in der IdP-Konfiguration vorgenommen?}\\
+Die Änderung der Metadaten ist der Kern des Prozesses und muss somit modelliert werden. Des Weiteren kann diese Frage die verwendete Technologiebasis offenlegen und damit wichtige Vorarbeit für die Anforderungsanalyse liefern.\\\\
+\textbf{Wie viel Zeit wird derzeit für die Verwaltung von Metadaten aufgewendet?}\\
+Ziel der Frage ist es, die Auswirkungen des Prozesses auf die Arbeitsbelastung der involvierten Akteure zu erfassen. Diese Information wird wichtig sobald die Priorisierung einzelner Teilprozesse für einen zukünftigen Selfservice im Rahmen der Anforderungsanalyse vorgenommen werden muss.\\\\
+
+\subsubsection{Serviceprovider-Administratoren}
+\textbf{Wie gehen sie vor wenn sie Änderungen an ihrem Serviceprovider kommunizieren wollen?}\\
+Ziel der Frage ist es, einen Vergleich zu den Aussagen des IdP zu schaffen.\\\\
+\textbf{Gibt es Schwierigkeiten bei der Verwaltung von Metadaten, die aufgrund des aktuellen Prozesses auftreten?}\\
+Die Identifikation von wahrgenommenen Schwachstellen in dem Prozess durch involvierte Akteure liefert wichtige Informationen für die Verbesserung des Prozesses\\\\
+\textbf{Wie würden sie die Kommunikation mit der IDM-Gruppe beschreiben?}\\
+Die Frage zielt darauf ab, qualitative Probleme in der Kommunikation offenzulegen.\\\\
+
+
+Diese Fragen behandeln die verschiedenen Aspekte der Metadatenverwaltung und deren Relevanz für die Prozessmodellierung aus der Perspektive der verschiedenen Stakeholder-Gruppen.
