@@ -11,3 +11,7 @@
 % seperator
 \KOMAoptions{headsepline=1pt}
 \KOMAoptions{footsepline=1pt}
+% newline after paragraph and subparagaph
+\RedeclareSectionCommands[
+  afterskip=1sp
+]{paragraph,subparagraph}

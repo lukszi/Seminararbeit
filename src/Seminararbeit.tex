@@ -1,45 +1,49 @@
 \documentclass[a4paper, fontsize=11pt]{scrartcl}
 
-% Setup document
+%%%%%%%%%%%
+%% Setup %%
+%%%%%%%%%%%
 \input{meta/includes.tex}
 \input{meta/variables.tex}
 \input{meta/document_metadata.tex}
 \input{meta/page_structure.tex}
 \addbibresource{Seminararbeit.bib}
 
-\RedeclareSectionCommands[
-  afterskip=1sp
-]{paragraph,subparagraph}
 
 \begin{document}
-%% Prefix %%
-\input{sections/title_page.tex}
-% Einbinden der Eidesstattlichen Erklärung
-\includepdf{res/EidesstattlicheErklaerung.pdf}
-\tableofcontents
-\newpage
+  %%%%%%%%%%%%
+  %% Prefix %%
+  %%%%%%%%%%%%
+  \input{sections/title_page.tex}
+  \includepdf{res/EidesstattlicheErklaerung.pdf}
+  \tableofcontents
+  \newpage
 
-%% Hauptteil %%
-% Seitenzahlen beginnen ab hier
-\pagenumbering{arabic}
+  %%%%%%%%%%%%%%%
+  %% Hauptteil %%
+  %%%%%%%%%%%%%%%
+  % Seitenzahlen beginnen ab hier
+  \pagenumbering{arabic}
+  \input{sections/einfuehrung/section.tex}
 
-\input{sections/einfuehrung/section.tex}
+  \input{sections/grundlagen/section.tex}
 
-\input{sections/grundlagen/section.tex}
+  \input{sections/methodik.tex}
 
-\input{sections/methodik.tex}
+  \input{sections/prozessbeschreibung.tex}
 
-\input{sections/prozessbeschreibung.tex}
+  \input{sections/ergebnisse.tex}
 
-\input{sections/ergebnisse.tex}
+  \input{sections/ausblick.tex}
 
-\input{sections/ausblick.tex}
-%% Suffix %%
-\newpage
+  %%%%%%%%%%%%
+  %% Suffix %%
+  %%%%%%%%%%%%
+  \newpage
 
-% Bibliographie
-\pagenumbering{Roman}
-\printbibliography{}
-% Abbildungsverzeichnis
-\listoffigures
+  % Bibliographie
+  \pagenumbering{Roman}
+  \printbibliography{}
+  % Abbildungsverzeichnis
+  \listoffigures
 \end{document}
