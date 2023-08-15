@@ -3,10 +3,10 @@
 %%%%%%%%%%%
 %% Setup %%
 %%%%%%%%%%%
-\input{meta/includes.tex}
-\input{meta/variables.tex}
-\input{meta/document_metadata.tex}
-\input{meta/page_structure.tex}
+\input{config/includes.tex}
+\input{config/metadata.tex}
+\input{config/custom_commands.tex}
+\input{config/page_structure.tex}
 \addbibresource{Seminararbeit.bib}
 
 
@@ -22,9 +22,8 @@
   %%%%%%%%%%%%%%%
   %% Hauptteil %%
   %%%%%%%%%%%%%%%
-  % Seitenzahlen beginnen ab hier
   \pagenumbering{arabic}
-  \input{sections/einfuehrung/section.tex}
+  \input{sections/einfuehrung.tex}
 
   \input{sections/grundlagen/section.tex}
 
@@ -40,10 +39,8 @@
   %% Suffix %%
   %%%%%%%%%%%%
   \newpage
-
-  % Bibliographie
   \pagenumbering{Roman}
+
   \printbibliography{}
-  % Abbildungsverzeichnis
   \listoffigures
 \end{document}

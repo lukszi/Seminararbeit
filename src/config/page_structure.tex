@@ -1,16 +1,23 @@
-%% Structure the page with footers, headers and separationlines
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Structure of the average document page %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \clearpairofpagestyles{}
-% footer
+
+% Footer
 \ifoot[]{\itclogosmall}
 \cfoot[]{\abteilungabkuerzung}
 \ofoot[]{\pagemark}
-% header
+
+% Header
 \ihead[]{\vorname{} \nachname}
 \chead[]{\titel}
 \ohead[]{\matr}
-% seperator
+
+% Separator between header/footer and page content
 \KOMAoptions{headsepline=1pt}
 \KOMAoptions{footsepline=1pt}
+
 % newline after paragraph and subparagaph
 \RedeclareSectionCommands[
   afterskip=1sp
